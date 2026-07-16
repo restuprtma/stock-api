@@ -1,0 +1,102 @@
+openapi: 3.0.3
+info:
+  title: Backend Dashboard Monitoring Stok Neraca Pangan Beras
+  description: API untuk memonitoring stok neraca pangan beras di berbagai gudang.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Server Lokal
+paths:
+  /api/v1/stok:
+    get:
+      summary: Mendapatkan semua data stok beras
+      description: Mengambil seluruh dataset stok beras dari database.
+      responses:
+        '200':
+          description: Berhasil mengambil data stok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StokBeras'
+        '500':
+          description: Internal Server Error
+    post:
+      summary: Menambahkan data stok beras baru
+      description: Menyimpan data pencatatan stok baru ke database.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StokBerasInput'
+      responses:
+        '201':
+          description: Data stok berhasil disimpan
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StokBeras'
+        '400':
+          description: Request body tidak valid
+        '500':
+          description: Internal Server Error
+
+components:
+  schemas:
+    StokBerasInput:
+      type: object
+      required:
+        - tanggal
+        - jumlah_stok_ton
+        - lokasi_gudang
+      properties:
+        tanggal:
+          type: string
+          format: date
+          example: "2026-07-16"
+          description: Tanggal pencatatan stok (format YYYY-MM-DD)
+        jumlah_stok_ton:
+          type: number
+          format: double
+          example: 1500.75
+          description: Jumlah stok dalam satuan ton
+        lokasi_gudang:
+          type: string
+          example: "Gudang Bulog Divre Indramayu"
+          description: Nama lokasi atau gudang penyimpanan
+        catatan:
+          type: string
+          example: "Stok beras premium jenis IR64 melimpah"
+          description: Catatan tambahan atau keterangan mengenai stok
+
+    StokBeras:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        tanggal:
+          type: string
+          format: date
+          example: "2026-07-16"
+        jumlah_stok_ton:
+          type: number
+          format: double
+          example: 1500.75
+        lokasi_gudang:
+          type: string
+          example: "Gudang Bulog Divre Indramayu"
+        catatan:
+          type: string
+          example: "Stok beras premium jenis IR64 melimpah"
+        created_at:
+          type: string
+          format: date-time
+          example: "2026-07-16T12:00:00Z"
+        updated_at:
+          type: string
+          format: date-time
+          example: "2026-07-16T12:00:00Z"
