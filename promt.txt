@@ -1,0 +1,10 @@
+buatkan promt untuk
+
+Kita akan melakukan vibe coding membangun MVP Backend Dashboard Monitoring Stok Neraca Pangan Beras menggunakan Go.
+
+- menggunakan openapi.yaml untuk kontrak antara FE dan BE
+- setup koneksi MySQL (asumsukan root tanpa pasword di lokal)
+- Buat README.md: Tuliskan instruksi cara menjalankan server, dan tambahkan peringatan bahwa user harus membuat database bernama stok_beras_db terlebih dahulu di MySQL sebelum menjalankan aplikasi.
+
+buatkan promt serta intruksi dengan jelas, karena akan di eksekusi oleh junior programmer / AI agent yang lebih murah
+buat di file issue.md
